@@ -100,6 +100,18 @@ class Tree {
         }
         return arr;
     }
+
+    preOrder(callBack){
+        const arr = [];
+        this.preOrderRec(this.root, callBack, arr);
+        return arr;
+    }
+    preOrderRec(root, callBack, arr){
+        if(!root) return;
+        callBack ? callBack(root.data) : arr.push(root.data);
+        this.preOrderRec(root.left, callBack, arr);
+        this.preOrderRec(root.right, callBack, arr);
+    }
 }
 
 let tree = new Tree([3,3,56,12,78,54,90,92]);
@@ -109,4 +121,4 @@ prettyPrint(tree.root);
 // tree.delete(78);
 // prettyPrint(tree.root);
 // prettyPrint(tree.find(12));
-console.log(tree.levelOrder(a => console.log(a*2)));
+console.log(tree.preOrder(a => console.log(a*2)));
