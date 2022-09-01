@@ -81,12 +81,24 @@ class Tree {
     find(value){
         let node = this.root;
         while(node){
-            console.log(node.data);
             if(node.data === value) break;
             if(node.data > value) node = node.left;
             else node = node.right;
         }
         return node;
+    }
+
+    levelOrder(callBack){
+        const arr = [];
+        const queue = [this.root];
+        let node;
+        while(queue.length){
+            node = queue.shift();
+            callBack ? callBack(node.data) : arr.push(node.data);
+            if(node.left) queue.push(node.left);
+            if(node.right) queue.push(node.right);
+        }
+        return arr;
     }
 }
 
@@ -96,4 +108,5 @@ prettyPrint(tree.root);
 // prettyPrint(tree.root);
 // tree.delete(78);
 // prettyPrint(tree.root);
-prettyPrint(tree.find(12));
+// prettyPrint(tree.find(12));
+console.log(tree.levelOrder(a => console.log(a*2)));
