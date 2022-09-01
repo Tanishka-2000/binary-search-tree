@@ -77,11 +77,23 @@ class Tree {
         }
         return root.data;
     }
+
+    find(value){
+        let node = this.root;
+        while(node){
+            console.log(node.data);
+            if(node.data === value) break;
+            if(node.data > value) node = node.left;
+            else node = node.right;
+        }
+        return node;
+    }
 }
 
 let tree = new Tree([3,3,56,12,78,54,90,92]);
 prettyPrint(tree.root);
-tree.insert(76);
-prettyPrint(tree.root);
-tree.delete(78);
-prettyPrint(tree.root);
+// tree.insert(76);
+// prettyPrint(tree.root);
+// tree.delete(78);
+// prettyPrint(tree.root);
+prettyPrint(tree.find(12));
