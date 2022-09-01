@@ -157,11 +157,21 @@ class Tree {
         }
         return d;
     }
+    isBalanced(){
+        return this.isBalancedRec(this.root);
+    }
+    isBalancedRec(root){
+        if(!root) return true;
+        return (this.isBalancedRec(root.left) && this.isBalancedRec(root.right) && Math.abs(this.heightRec(root.left) - this.heightRec(root.right)) <=1)
+    }
 }
 
 let tree = new Tree([3,3,56,12,78,54,90,92]);
+tree.insert(4);
+tree.insert(2);
+// tree.insert(6);
 prettyPrint(tree.root);
-tree.insert(76);
+
 // prettyPrint(tree.root);
 // tree.delete(78);
 // prettyPrint(tree.root);
@@ -169,4 +179,5 @@ tree.insert(76);
 // console.log(tree.preOrder());
 // console.log(tree.inOrder());
 // console.log(tree.postOrder());
-console.log(tree.depth(tree.root.right.left));
+// console.log(tree.height());
+console.log(tree.isBalanced());
