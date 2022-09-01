@@ -50,9 +50,38 @@ class Tree {
             }
         }
     }
+
+    delete(value){
+        this.root = this.deleteRec(this.root, value);
+    }
+
+    deleteRec(root, data){
+        if(!root) return root;
+        if(root.data > data) root.left = this.deleteRec(root.left, data);
+        else if(root.data < data) root.right = this.deleteRec(root.right, data);
+        else{
+            // when root.data === data
+            if(!root.left) return root.right;
+            else if(!root.right) return root.left;
+
+            // when niether of the children of root are null
+            root.value = this.minValue(root.right);
+            root.right = this.deleteRec(root.right, root.data);
+        }
+        return root;
+    }
+
+    minValue(root){
+        while(root.left){
+            root = root.left;
+        }
+        return root.data;
+    }
 }
 
 let tree = new Tree([3,3,56,12,78,54,90,92]);
 prettyPrint(tree.root);
 tree.insert(76);
+prettyPrint(tree.root);
+tree.delete(78);
 prettyPrint(tree.root);
