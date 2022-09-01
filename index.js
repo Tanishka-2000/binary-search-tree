@@ -135,15 +135,26 @@ class Tree {
         this.postOrderRec(root.right, callBack, arr);
         callBack ? callBack(root.data) : arr.push(root.data);
     }
+
+    height(){
+        return this.heightRec(this.root);
+    }
+    heightRec(root){
+        if(!root) return 0;
+        let h1 = this.heightRec(root.left);
+        let h2 = this.heightRec(root.right);
+        return h1 > h2 ? h1+1 : h2+1;
+    }
 }
 
 let tree = new Tree([3,3,56,12,78,54,90,92]);
 prettyPrint(tree.root);
-// tree.insert(76);
+tree.insert(76);
 // prettyPrint(tree.root);
 // tree.delete(78);
 // prettyPrint(tree.root);
 // prettyPrint(tree.find(12));
-console.log(tree.preOrder());
-console.log(tree.inOrder());
-console.log(tree.postOrder());
+// console.log(tree.preOrder());
+// console.log(tree.inOrder());
+// console.log(tree.postOrder());
+console.log(tree.height());
