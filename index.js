@@ -164,12 +164,16 @@ class Tree {
         if(!root) return true;
         return (this.isBalancedRec(root.left) && this.isBalancedRec(root.right) && Math.abs(this.heightRec(root.left) - this.heightRec(root.right)) <=1)
     }
+    reBalance(){
+        let arr = this.inOrder();
+        this.root = this.buildTree(arr, 0, arr.length-1);
+    }
 }
 
 let tree = new Tree([3,3,56,12,78,54,90,92]);
 tree.insert(4);
 tree.insert(2);
-// tree.insert(6);
+tree.insert(6);
 prettyPrint(tree.root);
 
 // prettyPrint(tree.root);
@@ -180,4 +184,6 @@ prettyPrint(tree.root);
 // console.log(tree.inOrder());
 // console.log(tree.postOrder());
 // console.log(tree.height());
+tree.reBalance();
 console.log(tree.isBalanced());
+prettyPrint(tree.root);
