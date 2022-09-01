@@ -145,6 +145,18 @@ class Tree {
         let h2 = this.heightRec(root.right);
         return h1 > h2 ? h1+1 : h2+1;
     }
+
+    depth(node){
+        let temp = this.root;
+        let d = 0;
+        while(temp){
+            if(temp.data === node.data) break;
+            if(temp.data > node.data) temp = temp.left;
+            else temp = temp.right;
+            d++;
+        }
+        return d;
+    }
 }
 
 let tree = new Tree([3,3,56,12,78,54,90,92]);
@@ -157,4 +169,4 @@ tree.insert(76);
 // console.log(tree.preOrder());
 // console.log(tree.inOrder());
 // console.log(tree.postOrder());
-console.log(tree.height());
+console.log(tree.depth(tree.root.right.left));
