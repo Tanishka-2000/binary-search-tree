@@ -170,20 +170,25 @@ class Tree {
     }
 }
 
-let tree = new Tree([3,3,56,12,78,54,90,92]);
-tree.insert(4);
-tree.insert(2);
-tree.insert(6);
+let tree = new Tree([3,92,3,56,12,78,54,90]);
 prettyPrint(tree.root);
-
-// prettyPrint(tree.root);
-// tree.delete(78);
-// prettyPrint(tree.root);
-// prettyPrint(tree.find(12));
-// console.log(tree.preOrder());
-// console.log(tree.inOrder());
-// console.log(tree.postOrder());
-// console.log(tree.height());
+console.log('Is tree balanced: ' + tree.isBalanced());
+console.log('levelOrder');
+console.log(tree.levelOrder());
+console.log('PreOrder');
+console.log(tree.preOrder());
+console.log('InOrder');
+console.log(tree.inOrder());
+console.log('PostOrder');
+console.log(tree.postOrder());
+console.log('adding elements to tree');
+tree.insert(116);
+tree.insert(198);
+tree.insert(125);
+tree.insert(102);
+prettyPrint(tree.root);
+console.log('Is tree balanced: ' + tree.isBalanced());
+console.log('Rebalancing tree..');
 tree.reBalance();
-console.log(tree.isBalanced());
 prettyPrint(tree.root);
+console.log('Is tree balanced: ' + tree.isBalanced());
